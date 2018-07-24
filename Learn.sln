@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld", "HelloWorld\He
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonNetParse", "JsonNetParse\JsonNetParse.csproj", "{EBCBC74D-C27D-41DA-A2B5-3E93086BEA12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClientLearn", "HttpClientLearn\HttpClientLearn.csproj", "{D31D80E1-34BD-40FD-8E92-2383244F550F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClientLearn", "HttpClientLearn\HttpClientLearn.csproj", "{D31D80E1-34BD-40FD-8E92-2383244F550F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4NetLearn", "Log4NetLearn\Log4NetLearn.csproj", "{378A5DEA-C8CF-4939-87F3-92B18D558C0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D31D80E1-34BD-40FD-8E92-2383244F550F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D31D80E1-34BD-40FD-8E92-2383244F550F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D31D80E1-34BD-40FD-8E92-2383244F550F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378A5DEA-C8CF-4939-87F3-92B18D558C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378A5DEA-C8CF-4939-87F3-92B18D558C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378A5DEA-C8CF-4939-87F3-92B18D558C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378A5DEA-C8CF-4939-87F3-92B18D558C0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
