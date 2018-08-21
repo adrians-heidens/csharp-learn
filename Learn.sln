@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4NetLearn", "Log4NetLear
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttributesLearn", "AttributesLearn\AttributesLearn.csproj", "{85EB32B4-665F-4AD3-95B1-0BDF32111516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitConverterLearn", "BitConverterLearn\BitConverterLearn.csproj", "{36B9E35D-B021-42F4-98C3-D39A6EDE2F2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitConverterLearn", "BitConverterLearn\BitConverterLearn.csproj", "{36B9E35D-B021-42F4-98C3-D39A6EDE2F2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamLearn", "StreamLearn\StreamLearn.csproj", "{05A60DE3-4AD3-4654-99EB-1A3A49D0ECE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{36B9E35D-B021-42F4-98C3-D39A6EDE2F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36B9E35D-B021-42F4-98C3-D39A6EDE2F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36B9E35D-B021-42F4-98C3-D39A6EDE2F2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A60DE3-4AD3-4654-99EB-1A3A49D0ECE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A60DE3-4AD3-4654-99EB-1A3A49D0ECE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A60DE3-4AD3-4654-99EB-1A3A49D0ECE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A60DE3-4AD3-4654-99EB-1A3A49D0ECE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
