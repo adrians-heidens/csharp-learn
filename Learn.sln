@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NullConditionalLearn", "Nul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UriParseLearn", "UriParseLearn\UriParseLearn.csproj", "{FD01297D-DBBA-40F6-ABE9-C89813299494}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathLearn", "PathLearn\PathLearn.csproj", "{87B37FA4-70DA-4C9C-BE1E-DC5A9ABE3A41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{FD01297D-DBBA-40F6-ABE9-C89813299494}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD01297D-DBBA-40F6-ABE9-C89813299494}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD01297D-DBBA-40F6-ABE9-C89813299494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B37FA4-70DA-4C9C-BE1E-DC5A9ABE3A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B37FA4-70DA-4C9C-BE1E-DC5A9ABE3A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B37FA4-70DA-4C9C-BE1E-DC5A9ABE3A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B37FA4-70DA-4C9C-BE1E-DC5A9ABE3A41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
