@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PathLearn", "PathLearn\Path
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitOperationsLearn", "BitOperationsLearn\BitOperationsLearn.csproj", "{D184CCA6-1812-4D3D-83CD-0F036C1BDF1D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureStorageLearn", "AzureStorageLearn\AzureStorageLearn.csproj", "{3F19D4FE-F0DC-4E3B-8D49-76E716664059}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D184CCA6-1812-4D3D-83CD-0F036C1BDF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D184CCA6-1812-4D3D-83CD-0F036C1BDF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D184CCA6-1812-4D3D-83CD-0F036C1BDF1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F19D4FE-F0DC-4E3B-8D49-76E716664059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F19D4FE-F0DC-4E3B-8D49-76E716664059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F19D4FE-F0DC-4E3B-8D49-76E716664059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F19D4FE-F0DC-4E3B-8D49-76E716664059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
