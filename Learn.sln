@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitOperationsLearn", "BitOp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureStorageLearn", "AzureStorageLearn\AzureStorageLearn.csproj", "{3F19D4FE-F0DC-4E3B-8D49-76E716664059}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImmutableObjectsLearn", "ImmutableObjectsLearn\ImmutableObjectsLearn.csproj", "{6726679F-0C5B-4BF4-9E73-1C53456D3CAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{3F19D4FE-F0DC-4E3B-8D49-76E716664059}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F19D4FE-F0DC-4E3B-8D49-76E716664059}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F19D4FE-F0DC-4E3B-8D49-76E716664059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6726679F-0C5B-4BF4-9E73-1C53456D3CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6726679F-0C5B-4BF4-9E73-1C53456D3CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6726679F-0C5B-4BF4-9E73-1C53456D3CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6726679F-0C5B-4BF4-9E73-1C53456D3CAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
