@@ -7,15 +7,15 @@ namespace JsonNetParse.Models
 {
     class Person
     {
-        [JsonProperty("id")]
+        [JsonProperty("id", Required = Required.AllowNull)]
         public int Id { get; set; }
 
-        [JsonProperty("fullname")]
+        [JsonProperty("fullname", Required = Required.Always)]
         public string Fullname { get; set; }
 
         public override string ToString()
         {
-            return $"Person(Fullname='{Fullname}')";
+            return $"Person(Id={Id}, Fullname='{Fullname}')";
         }
     }
 }

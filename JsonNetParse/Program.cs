@@ -9,6 +9,7 @@ namespace JsonNetParse
             SimpleParsing.Run();
             SerializerParsing.Run();
             AttributeNaming.Run();
+            MissingMembersTest.Run();
             Console.ReadKey();
         }
     }
