@@ -12,8 +12,9 @@ namespace JsonNetParse
     {
         public static void Run()
         {
-            var jsonString = "{astring: 'foo', anumber: 12, anobject: {foo: 1}," +
-                " anarray: [1, 2, 3], aboolean: true, anull: null}";
+            var jsonString = "{astring: 'foo', anumber: 12, " +
+                "anobject: {foo: 1, bar: 'abc'}, " +
+                "anarray: [1, 2, 3], aboolean: true, anull: null}";
 
             // Parse as JSON object (can also be an array or dynamic type).
             var jobject = JObject.Parse(jsonString);
@@ -37,6 +38,12 @@ namespace JsonNetParse
             {
                 Console.WriteLine($"  {entry.Key}: {entry.Value}");
             }
+
+            // Dynamic feature.
+            dynamic ob = jobject["anobject"];
+            int obFoo = ob.foo;
+            string obBar = ob.bar;
+            Console.WriteLine($"{obFoo}, {obBar}");
         }
     }
 }
