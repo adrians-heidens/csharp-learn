@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImmutableObjectsLearn", "Im
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldPatternStudy", "FieldPatternStudy\FieldPatternStudy.csproj", "{5B1FD784-AEEA-4F26-91E3-287F1ADB2640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberParseLearn", "NumberParseLearn\NumberParseLearn.csproj", "{6C891AF6-6829-4F3B-BAE0-4F2B5EB62049}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumberParseLearn", "NumberParseLearn\NumberParseLearn.csproj", "{6C891AF6-6829-4F3B-BAE0-4F2B5EB62049}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexLearn", "RegexLearn\RegexLearn.csproj", "{5E091602-87F2-4ACF-8787-AD711EC83E39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{6C891AF6-6829-4F3B-BAE0-4F2B5EB62049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C891AF6-6829-4F3B-BAE0-4F2B5EB62049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C891AF6-6829-4F3B-BAE0-4F2B5EB62049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E091602-87F2-4ACF-8787-AD711EC83E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E091602-87F2-4ACF-8787-AD711EC83E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E091602-87F2-4ACF-8787-AD711EC83E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E091602-87F2-4ACF-8787-AD711EC83E39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
