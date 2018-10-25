@@ -1,22 +1,15 @@
-﻿using log4net;
-using log4net.Config;
-using System;
-using System.Reflection;
+﻿using System;
 
 namespace Log4NetLearn
 {
     class Program
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
-
         static void Main(string[] args)
         {
-            BasicConfigurator.Configure(LogManager.GetRepository(Assembly.GetCallingAssembly()));
-
-            log.Debug("Debug message from logger");
-            log.Debug("Error message from logger");
-
-            Console.WriteLine("End.");
+            //BasicConfigExample.Run();
+            //ProgrammaticConfig.Run();
+            RemoteSyslogExample.Run();
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
     }

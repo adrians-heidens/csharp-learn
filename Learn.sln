@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegexLearn", "RegexLearn\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketsLearn", "SocketsLearn\SocketsLearn.csproj", "{9986158C-F021-4821-81C8-269ECB0F25C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionsLearn", "AzureFunctionsLearn\AzureFunctionsLearn.csproj", "{A7E11DCD-FEE7-4F39-B2FE-FBC4D4F7AD5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{9986158C-F021-4821-81C8-269ECB0F25C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9986158C-F021-4821-81C8-269ECB0F25C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9986158C-F021-4821-81C8-269ECB0F25C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7E11DCD-FEE7-4F39-B2FE-FBC4D4F7AD5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E11DCD-FEE7-4F39-B2FE-FBC4D4F7AD5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E11DCD-FEE7-4F39-B2FE-FBC4D4F7AD5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E11DCD-FEE7-4F39-B2FE-FBC4D4F7AD5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
