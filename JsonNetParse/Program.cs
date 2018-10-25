@@ -6,11 +6,12 @@ namespace JsonNetParse
     {
         static void Main(string[] args)
         {
-            SimpleParsing.Run();
-            SerializerParsing.Run();
-            AttributeNaming.Run();
-            MissingMembersTest.Run();
-            JObjectLearn.Run();
+            //SimpleParsing.Run();
+            //SerializerParsing.Run();
+            //AttributeNaming.Run();
+            //MissingMembersTest.Run();
+            //JObjectLearn.Run();
+            NestedObjectsTest.Run();
             Console.ReadKey();
         }
     }
