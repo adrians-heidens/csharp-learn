@@ -16,6 +16,10 @@ namespace Log4NetLearn
         private static void ConfigureLogger()
         {
             ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            if (repository.Configured)
+            {
+                throw new System.Exception("Configured already");
+            }
 
             PatternLayout layout = new PatternLayout();
             layout.ConversionPattern = "%utcdate %level %logger: %message%newline";
