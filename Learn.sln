@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctionsLearn", "Azur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumLearn", "EnumLearn\EnumLearn.csproj", "{58150D52-87C6-4056-91F9-A33D113CE4FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionLearn", "ReflectionLearn\ReflectionLearn.csproj", "{FC50FB60-0621-4DC6-870E-52739CBC0330}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{58150D52-87C6-4056-91F9-A33D113CE4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58150D52-87C6-4056-91F9-A33D113CE4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58150D52-87C6-4056-91F9-A33D113CE4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC50FB60-0621-4DC6-870E-52739CBC0330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC50FB60-0621-4DC6-870E-52739CBC0330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC50FB60-0621-4DC6-870E-52739CBC0330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC50FB60-0621-4DC6-870E-52739CBC0330}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
