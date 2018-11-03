@@ -13,7 +13,7 @@ namespace JsonNetParse
         public static void Run()
         {
             var jsonString = "{astring: 'foo', anumber: 12, " +
-                "anobject: {foo: 1, bar: 'abc'}, " +
+                "anobject: {foo: 1, bar: 'abc', spam: {'a': 1}}, " +
                 "anarray: [1, 2, 3], aboolean: true, anull: null}";
 
             // Parse as JSON object (can also be an array or dynamic type).
@@ -31,12 +31,29 @@ namespace JsonNetParse
             bool aboolean = jobject.GetValue("aboolean").Value<bool>();
             Console.WriteLine(aboolean);
 
+            // Get string field or null.
+            var something = jobject.GetValue("nonexistant")?.Value<string>();
+            Console.WriteLine($"Something: '{something}'");
+
             // Get JObject property as IDictionary.
             var anobject = jobject.GetValue("anobject").ToObject<IDictionary<string, object>>();
             Console.WriteLine(anobject.GetType());
             foreach (var entry in anobject)
             {
                 Console.WriteLine($"  {entry.Key}: {entry.Value}");
+            }
+
+            // Try to get non-existant.
+            var nonexistant = (JObject) jobject["nonexistant"];
+            Console.WriteLine($"nonexistant: {nonexistant}");
+
+            var obj = (JObject) jobject["anobject"];
+            Console.WriteLine($"obj: {obj}");
+            foreach (var p in obj)
+            {
+                var key = p.Key;
+                var value = p.Value;
+                Console.WriteLine($"  obj.prop: {key}: {value}");
             }
 
             // Dynamic feature.
