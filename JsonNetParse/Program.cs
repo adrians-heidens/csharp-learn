@@ -10,9 +10,10 @@ namespace JsonNetParse
             //SerializerParsing.Run();
             //AttributeNaming.Run();
             //MissingMembersTest.Run();
-            JObjectLearn.Run();
+            //JObjectLearn.Run();
             //NestedObjectsTest.Run();
             //DynamicParsingExample.Run();
+            CommandDispatchExample.Run();
             Console.WriteLine("End...");
             Console.ReadKey();
         }
