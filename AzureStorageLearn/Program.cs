@@ -6,6 +6,24 @@ using Newtonsoft.Json;
 
 namespace AzureStorageLearn
 {
+    /// <summary>
+    /// Example data class.
+    /// </summary>
+    class Resource
+    {
+        public string Type { get; set; }
+
+        public string Name { get; set; }
+
+        public string Url { get; set; }
+
+        public int Size { get; set; }
+
+        public override string ToString()
+        {
+            return $"Resource(Type={Type}, Name={Name}, Url={Url}, Size={Size})";
+        }
+    }
 
     /// <summary>
     /// Example Azure storage table entity. Shows an example how to store list of values.
@@ -13,6 +31,8 @@ namespace AzureStorageLearn
     class CustomerEntity : TableEntity
     {
         private IList<string> _images = new List<string>();
+
+        private IList<Resource> _resources = new List<Resource>();
 
         public CustomerEntity(string lastName, string firstName)
         {
@@ -27,6 +47,8 @@ namespace AzureStorageLearn
         public string PhoneNumber { get; set; }
 
         public string ImagesRaw { get; set; } = "[]";
+
+        public string ResourcesRaw { get; set; } = "[]";
 
         public void AddImage(string url)
         {
@@ -52,6 +74,27 @@ namespace AzureStorageLearn
             get
             {
                 return JsonConvert.DeserializeObject<IList<string>>(ImagesRaw);
+            }
+        }
+
+        public void AddResource(Resource resource)
+        {
+            _resources.Add(resource);
+            ResourcesRaw = JsonConvert.SerializeObject(_resources);
+        }
+
+        public void ClearResources(Resource resource)
+        {
+            _resources.Clear();
+            ResourcesRaw = JsonConvert.SerializeObject(_resources);
+        }
+
+        [IgnoreProperty]
+        public IList<Resource> Resources
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<IList<Resource>>(ResourcesRaw);
             }
         }
     }
@@ -86,6 +129,23 @@ namespace AzureStorageLearn
             customer.AddImage("https://example.test/image1.png");
             customer.AddImage("https://example.test/image2.png");
 
+            //customer.AddResource(ResourceType.Mp3, "https://example.test/some.mp3");
+
+            customer.AddResource(new Resource
+            {
+                Name = "Theme Song",
+                Type = "mp3",
+                Url = "https://example.test/song.mp3",
+                Size = 156,
+            });
+            customer.AddResource(new Resource
+            {
+                Name = "3D model",
+                Type = "fbx",
+                Url = "https://example.test/3d.fbx",
+                Size = 356,
+            });
+
             TableOperation insertOperation = TableOperation.InsertOrReplace(customer);
 
             table.ExecuteAsync(insertOperation).Wait();
@@ -95,9 +155,16 @@ namespace AzureStorageLearn
             TableResult tableResult = table.ExecuteAsync(tableOperation).Result;
 
             var customer2 = (CustomerEntity) tableResult.Result;
+            Console.WriteLine("Images:");
             foreach (var image in customer2.Images)
             {
-                Console.WriteLine(image);
+                Console.WriteLine($"  {image}");
+            }
+
+            Console.WriteLine("Resources:");
+            foreach (var resource in customer2.Resources)
+            {
+                Console.WriteLine($"  {resource}");
             }
 
             var ent = new CustomerEntity();
