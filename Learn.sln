@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionLearn", "Reflecti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsBuildLearn", "MsBuildLearn\MsBuildLearn.csproj", "{0A758586-A036-4B0F-A96C-789528A7CFD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringFormatLearn", "StringFormatLearn\StringFormatLearn.csproj", "{FA823C1F-7BC3-4293-AB18-D55FE1F03839}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -220,6 +222,14 @@ Global
 		{0A758586-A036-4B0F-A96C-789528A7CFD6}.Release|Any CPU.Build.0 = Debug|x86
 		{0A758586-A036-4B0F-A96C-789528A7CFD6}.Release|x86.ActiveCfg = Debug|x86
 		{0A758586-A036-4B0F-A96C-789528A7CFD6}.Release|x86.Build.0 = Debug|x86
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Debug|x86.Build.0 = Debug|Any CPU
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Release|x86.ActiveCfg = Release|Any CPU
+		{FA823C1F-7BC3-4293-AB18-D55FE1F03839}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
