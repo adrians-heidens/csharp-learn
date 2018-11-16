@@ -14,6 +14,7 @@ namespace JsonNetParse
             //NestedObjectsTest.Run();
             //DynamicParsingExample.Run();
             CommandDispatchExample.Run();
+            //CustomTypeHandling.Run();
             Console.WriteLine("End...");
             Console.ReadKey();
         }

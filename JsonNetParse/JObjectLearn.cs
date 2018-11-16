@@ -61,6 +61,10 @@ namespace JsonNetParse
             int obFoo = ob.foo;
             string obBar = ob.bar;
             Console.WriteLine($"{obFoo}, {obBar}");
+
+            // Newtonsoft json parser tries to convert to a type if possible.
+            var anumberStr = jobject.Value<string>("anumber");
+            Console.WriteLine("anumber as string: {0}", anumberStr);
         }
     }
 }
