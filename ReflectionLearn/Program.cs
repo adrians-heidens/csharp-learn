@@ -11,6 +11,7 @@ namespace ReflectionLearn
         static void Main(string[] args)
         {
             Assembly assembly = typeof(Program).Assembly;
+            // Or get executing assembly:
             //Assembly assembly = Assembly.GetExecutingAssembly();
 
             Console.WriteLine(assembly);
@@ -36,6 +37,27 @@ namespace ReflectionLearn
             {
                 Console.WriteLine($"  Member: {member}");
             }
+
+            // Demonstrate invoking methods on object instance using
+            // reflection InvokeMember
+            Console.WriteLine("----");
+
+            var controller = new Controller("a/connection/string");
+
+            controller.DoFoo();
+            controller.DoBar(spam: "foo");
+
+            object controllerAsObject = controller;
+
+            Console.WriteLine("----");
+
+            var t = controllerAsObject.GetType();
+            t.InvokeMember("DoFoo",
+                BindingFlags.InvokeMethod | BindingFlags.OptionalParamBinding, null,
+                controllerAsObject, new object[] {});
+            t.InvokeMember("DoBar",
+                BindingFlags.InvokeMethod | BindingFlags.OptionalParamBinding, null,
+                controllerAsObject, new object[] { "test", Type.Missing });
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
