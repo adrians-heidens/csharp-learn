@@ -59,6 +59,16 @@ namespace ReflectionLearn
                 BindingFlags.InvokeMethod | BindingFlags.OptionalParamBinding, null,
                 controllerAsObject, new object[] { "test", Type.Missing });
 
+            Console.WriteLine("----");
+
+            // Create instance and invoke method on it using reflection.
+            var o = assembly.CreateInstance(
+                "ReflectionLearn.Controller", false, BindingFlags.CreateInstance, null,
+                new object[] { "/other/conn/string" }, null, null);
+            t.InvokeMember("DoBar",
+                BindingFlags.InvokeMethod | BindingFlags.OptionalParamBinding, null,
+                o, new object[] { "test2", 12 });
+
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
