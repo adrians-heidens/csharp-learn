@@ -7,12 +7,7 @@ namespace HttpClientLearn
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Making HTTP request...");
-
-            HttpClient httpClient = new HttpClient();
-
-            var response = httpClient.GetAsync("https://google.lv").Result;
-            Console.WriteLine(response);
+            SimpleGetRequest.Run();
 
             Console.WriteLine("End.");
             Console.ReadKey();
