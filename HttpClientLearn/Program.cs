@@ -7,7 +7,7 @@ namespace HttpClientLearn
     {
         static void Main(string[] args)
         {
-            SimpleGetRequest.Run();
+            FormPostExample.Run();
 
             Console.WriteLine("End.");
             Console.ReadKey();
