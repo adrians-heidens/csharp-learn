@@ -15,7 +15,11 @@ namespace UriParseLearn
             Console.WriteLine($"AbsolutePath: '{ uri.AbsolutePath }'");
             Console.WriteLine($"Query: '{ uri.Query }'");
             Console.WriteLine($"Fragment: '{ uri.Fragment }'");
-            
+
+            uri = new Uri("/", UriKind.Relative);
+
+            Console.WriteLine($"ToString: '{ uri.ToString() }'");
+
             Console.WriteLine("End.");
             Console.ReadKey();
         }
