@@ -47,7 +47,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsBuildLearn", "MsBuildLear
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringFormatLearn", "StringFormatLearn\StringFormatLearn.csproj", "{FA823C1F-7BC3-4293-AB18-D55FE1F03839}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqLearn", "LinqLearn\LinqLearn.csproj", "{19553786-6259-4A51-99C6-01314FDA50B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqLearn", "LinqLearn\LinqLearn.csproj", "{19553786-6259-4A51-99C6-01314FDA50B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineArgsLearn", "CommandLineArgsLearn\CommandLineArgsLearn.csproj", "{08EB7BD3-B2EF-4AD6-B936-2186EA723078}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -240,6 +242,14 @@ Global
 		{19553786-6259-4A51-99C6-01314FDA50B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19553786-6259-4A51-99C6-01314FDA50B9}.Release|x86.ActiveCfg = Release|Any CPU
 		{19553786-6259-4A51-99C6-01314FDA50B9}.Release|x86.Build.0 = Release|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Debug|x86.Build.0 = Debug|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Release|x86.ActiveCfg = Release|Any CPU
+		{08EB7BD3-B2EF-4AD6-B936-2186EA723078}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
