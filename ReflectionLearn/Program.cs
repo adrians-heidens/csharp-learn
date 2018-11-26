@@ -6,7 +6,9 @@ namespace ReflectionLearn
     {
         static void Main(string[] args)
         {
-            UsageExample.Run();
+            //UsageExample.Run();
+
+            DllFromPathExample.Run();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
