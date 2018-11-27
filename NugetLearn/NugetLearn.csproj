@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Adrians Heidens</Authors>
+    <Company />
+    <PackageId>NugetLearnAdriansHeidens</PackageId>
+    <Description>An example library for learning NuGet packaging.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="readme.txt">
+      <Pack>true</Pack>
+      <PackagePath>\</PackagePath>
+    </Content>
+  </ItemGroup>
+  
+</Project>

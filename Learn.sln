@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandLineArgsLearn", "Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionsLearn", "ExtensionsLearn\ExtensionsLearn.csproj", "{805C68CC-909B-4ABD-9F3A-C54D3902A1BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetLearn", "NugetLearn\NugetLearn.csproj", "{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -260,6 +262,14 @@ Global
 		{805C68CC-909B-4ABD-9F3A-C54D3902A1BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{805C68CC-909B-4ABD-9F3A-C54D3902A1BB}.Release|x86.ActiveCfg = Release|Any CPU
 		{805C68CC-909B-4ABD-9F3A-C54D3902A1BB}.Release|x86.Build.0 = Release|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Debug|x86.Build.0 = Debug|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D86BDA6-0F0A-471E-8086-B48DFAA51CE5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

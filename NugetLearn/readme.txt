@@ -1,0 +1,1 @@
+﻿This is a library example for learning NuGet packaging.
