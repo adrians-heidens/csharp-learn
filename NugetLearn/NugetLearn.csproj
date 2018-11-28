@@ -6,6 +6,7 @@
     <Company />
     <PackageId>NugetLearnAdriansHeidens</PackageId>
     <Description>An example library for learning NuGet packaging.</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
