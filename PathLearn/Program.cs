@@ -34,6 +34,13 @@ namespace PathLearn
 
             Console.WriteLine($"Mimetype: '{ mimeType }'");
 
+            Console.WriteLine();
+
+            // Filename with and without extension.
+            var filePath = $@"C:\Users\Foo\Something.zip";
+            Console.WriteLine($"FileName: {Path.GetFileName(filePath)}");
+            Console.WriteLine($"FileNameWithoutExtension: {Path.GetFileNameWithoutExtension(filePath)}");
+            
             Console.WriteLine("End.");
             Console.ReadKey();
         }
