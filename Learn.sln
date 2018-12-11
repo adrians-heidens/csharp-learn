@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetLearn", "NugetLearn\Nu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TempFileLearn", "TempFileLearn\TempFileLearn.csproj", "{73302DF3-E9F0-4958-B8A7-2399BDEA1C60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLearn", "AsyncLearn\AsyncLearn.csproj", "{84F34F10-F31F-4774-80A1-5610EE9A7F5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncLearn", "AsyncLearn\AsyncLearn.csproj", "{84F34F10-F31F-4774-80A1-5610EE9A7F5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
