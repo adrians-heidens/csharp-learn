@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Threading.Tasks;
 using log4net;
 using log4net.Appender;
 using log4net.Layout;
@@ -14,23 +13,36 @@ using Microsoft.Azure.WebJobs.Host;
 
 namespace AzureFunctionsLearn
 {
-    public static class LoggingTestFunction
+    public static class Log4netTestFunction
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(LoggingTestFunction));
+        private static readonly ILog log = LogManager.GetLogger(typeof(Log4netTestFunction));
 
-        [FunctionName("LoggingTestFunction")]
-        public static async Task<HttpResponseMessage> Run(
+        [FunctionName("Log4netTestFunction")]
+        public static HttpResponseMessage Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req,
             TraceWriter traceWriter)
         {
             ConfigureLogger(traceWriter);
 
-            log.Fatal("Logging log4net test (level: Fatal)");
-            log.Error("Logging log4net test (level: Error)");
-            log.Warn("Logging log4net test (level: Warn)");
-            log.Info("Logging log4net test (level: Info)");
+            // Severity levels.
             log.Debug("Logging log4net test (level: Debug)");
-            
+            log.Info("Logging log4net test (level: Info)");
+            log.Warn("Logging log4net test (level: Warn)");
+            log.Error("Logging log4net test (level: Error)");
+            log.Fatal("Logging log4net test (level: Fatal)");
+
+            // Exception.
+            int[] array = { 1, 2 };
+            try
+            {
+                log.Info(array[2].ToString()); // Exception.
+            }
+            catch (Exception e)
+            {
+                log.Fatal("Exception occured", e);
+                return req.CreateResponse(HttpStatusCode.InternalServerError, "ERROR");
+            }
+
             return req.CreateResponse(HttpStatusCode.OK, "OK");
         }
 
@@ -45,13 +57,13 @@ namespace AzureFunctionsLearn
                 return;
             }
 
-            PatternLayout timeLayout = new PatternLayout();
-            timeLayout.ConversionPattern = "%utcdate %level %logger: %message%newline";
-            timeLayout.ActivateOptions();
+            PatternLayout localLayout = new PatternLayout();
+            localLayout.ConversionPattern = "%message%newline";
+            localLayout.ActivateOptions();
 
-            PatternLayout noTimeLayout = new PatternLayout();
-            noTimeLayout.ConversionPattern = "%level %logger: %message%newline";
-            noTimeLayout.ActivateOptions();
+            PatternLayout remoteLayout = new PatternLayout();
+            remoteLayout.ConversionPattern = "%level %logger: %message%newline";
+            remoteLayout.ActivateOptions();
 
             // Not sure about usage of this.
             PatternLayout identity = new PatternLayout();
@@ -59,16 +71,16 @@ namespace AzureFunctionsLearn
             identity.ActivateOptions();
 
             RemoteSyslogAppender remoteSyslogAppender = new RemoteSyslogAppender();
-            remoteSyslogAppender.Layout = noTimeLayout;
-            //remoteSyslogAppender.RemoteAddress = GetIpv4Address("f00.lv");
-            remoteSyslogAppender.RemoteAddress = IPAddress.Parse("192.188.1.100"); // rsyslog address.
+            remoteSyslogAppender.Layout = remoteLayout;
+            remoteSyslogAppender.RemoteAddress = GetIpv4Address("f00.lv");
+            //remoteSyslogAppender.RemoteAddress = IPAddress.Parse("192.188.1.100"); // rsyslog address.
             remoteSyslogAppender.RemotePort = 514;
             remoteSyslogAppender.Facility = RemoteSyslogAppender.SyslogFacility.User;
             remoteSyslogAppender.Identity = identity;
             remoteSyslogAppender.ActivateOptions();
 
             TraceWriterAppender traceWriterAppender = new TraceWriterAppender(traceWriter);
-            traceWriterAppender.Layout = noTimeLayout;
+            traceWriterAppender.Layout = localLayout;
             traceWriterAppender.ActivateOptions();
 
             IBasicRepositoryConfigurator configurableRepository = repository as IBasicRepositoryConfigurator;

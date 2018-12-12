@@ -59,7 +59,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TempFileLearn", "TempFileLe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncLearn", "AsyncLearn\AsyncLearn.csproj", "{84F34F10-F31F-4774-80A1-5610EE9A7F5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceBusLearn", "AzureServiceBusLearn\AzureServiceBusLearn.csproj", "{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureServiceBusLearn", "AzureServiceBusLearn\AzureServiceBusLearn.csproj", "{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -15,10 +15,30 @@ namespace AzureFunctionsLearn
 
         protected override void Append(LoggingEvent loggingEvent)
         {
-            var text = ">>> " + RenderLoggingEvent(loggingEvent);
-            if (loggingEvent.Level == Level.Error)
+            var text = RenderLoggingEvent(loggingEvent); // Rendered specified layout.
+            var exception = loggingEvent.ExceptionObject;
+            var level = loggingEvent.Level;
+            var message = loggingEvent.RenderedMessage; // Just a message.
+
+            if (level == Level.Debug)
             {
-                _traceWriter.Error(text);
+                _traceWriter.Verbose(text);
+            }
+            else if (level == Level.Info)
+            {
+                _traceWriter.Info(text);
+            }
+            else if (level == Level.Warn)
+            {
+                _traceWriter.Warning(text);
+            }
+            else if (level == Level.Error)
+            {
+                _traceWriter.Error(text, exception);
+            }
+            else if (level == Level.Fatal)
+            {
+                _traceWriter.Error(text, exception);
             }
             else
             {
