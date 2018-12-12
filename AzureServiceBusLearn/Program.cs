@@ -7,7 +7,9 @@ namespace AzureServiceBusLearn
         static void Main(string[] args)
         {
             //SendMessages.Run();
-            ReceiveMessages.Run();
+            //ReceiveMessages.Run();
+            //SendToTopic.Run();
+            //ReceiveFromSubscription.Run();
         }
     }
 }

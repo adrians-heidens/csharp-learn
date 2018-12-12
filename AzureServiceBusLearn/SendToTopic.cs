@@ -5,21 +5,21 @@ using Microsoft.Azure.ServiceBus;
 
 namespace AzureServiceBusLearn
 {
-    static class SendMessages
+    static class SendToTopic
     {
         const string ServiceBusConnectionString = "connection-string";
-        const string QueueName = "test";
-        static IQueueClient queueClient;
+        const string TopicName = "testtopic";
+        static ITopicClient topicClient;
 
         public static void Run()
         {
             RunAsync().GetAwaiter().GetResult();
         }
 
-        static async Task RunAsync()
+        private static async Task RunAsync()
         {
             const int numberOfMessages = 10;
-            queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+            topicClient = new TopicClient(ServiceBusConnectionString, TopicName);
 
             Console.WriteLine("======================================================");
             Console.WriteLine("Press ENTER key to exit after sending all the messages.");
@@ -30,24 +30,24 @@ namespace AzureServiceBusLearn
 
             Console.ReadKey();
 
-            await queueClient.CloseAsync();
+            await topicClient.CloseAsync();
         }
 
-        static async Task SendMessagesAsync(int numberOfMessagesToSend)
+        private static async Task SendMessagesAsync(int numberOfMessagesToSend)
         {
             try
             {
                 for (var i = 0; i < numberOfMessagesToSend; i++)
                 {
-                    // Create a new message to send to the queue.
+                    // Create a new message to send to the topic.
                     string messageBody = $"Message {i}";
                     var message = new Message(Encoding.UTF8.GetBytes(messageBody));
 
                     // Write the body of the message to the console.
                     Console.WriteLine($"Sending message: {messageBody}");
 
-                    // Send the message to the queue.
-                    await queueClient.SendAsync(message);
+                    // Send the message to the topic.
+                    await topicClient.SendAsync(message);
                 }
             }
             catch (Exception exception)

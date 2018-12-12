@@ -1,39 +1,40 @@
 ﻿using System;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.Azure.ServiceBus;
 
 namespace AzureServiceBusLearn
 {
-    static class ReceiveMessages
+    static class ReceiveFromSubscription
     {
         const string ServiceBusConnectionString = "connection-string";
-        const string QueueName = "test";
-        static IQueueClient queueClient;
+        const string TopicName = "testtopic";
+        const string SubscriptionName = "testTopicSub";
+        static ISubscriptionClient subscriptionClient;
 
         public static void Run()
         {
             RunAsync().GetAwaiter().GetResult();
         }
 
-        static async Task RunAsync()
+        private static async Task RunAsync()
         {
-            queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+            subscriptionClient = new SubscriptionClient(ServiceBusConnectionString, TopicName, SubscriptionName);
 
             Console.WriteLine("======================================================");
             Console.WriteLine("Press ENTER key to exit after receiving all the messages.");
             Console.WriteLine("======================================================");
 
-            // Register the queue message handler and receive messages in a loop
+            // Register subscription message handler and receive messages in a loop
             RegisterOnMessageHandlerAndReceiveMessages();
 
             Console.ReadKey();
 
-            await queueClient.CloseAsync();
+            await subscriptionClient.CloseAsync();
         }
 
-        static void RegisterOnMessageHandlerAndReceiveMessages()
+        private static void RegisterOnMessageHandlerAndReceiveMessages()
         {
             // Configure the message handler options in terms of exception handling, number of concurrent messages to deliver, etc.
             var messageHandlerOptions = new MessageHandlerOptions(ExceptionReceivedHandler)
@@ -48,25 +49,25 @@ namespace AzureServiceBusLearn
             };
 
             // Register the function that processes messages.
-            queueClient.RegisterMessageHandler(ProcessMessagesAsync, messageHandlerOptions);
+            subscriptionClient.RegisterMessageHandler(ProcessMessagesAsync, messageHandlerOptions);
         }
 
-        static async Task ProcessMessagesAsync(Message message, CancellationToken token)
+        private static async Task ProcessMessagesAsync(Message message, CancellationToken token)
         {
             // Process the message.
             Console.WriteLine($"Received message: SequenceNumber:{message.SystemProperties.SequenceNumber} Body:{Encoding.UTF8.GetString(message.Body)}");
 
             // Complete the message so that it is not received again.
-            // This can be done only if the queue Client is created in ReceiveMode.PeekLock mode (which is the default).
-            await queueClient.CompleteAsync(message.SystemProperties.LockToken);
+            // This can be done only if the subscriptionClient is created in ReceiveMode.PeekLock mode (which is the default).
+            await subscriptionClient.CompleteAsync(message.SystemProperties.LockToken);
 
-            // Note: Use the cancellationToken passed as necessary to determine if the queueClient has already been closed.
-            // If queueClient has already been closed, you can choose to not call CompleteAsync() or AbandonAsync() etc.
+            // Note: Use the cancellationToken passed as necessary to determine if the subscriptionClient has already been closed.
+            // If subscriptionClient has already been closed, you can choose to not call CompleteAsync() or AbandonAsync() etc.
             // to avoid unnecessary exceptions.
         }
 
         // Use this handler to examine the exceptions received on the message pump.
-        static Task ExceptionReceivedHandler(ExceptionReceivedEventArgs exceptionReceivedEventArgs)
+        private static Task ExceptionReceivedHandler(ExceptionReceivedEventArgs exceptionReceivedEventArgs)
         {
             Console.WriteLine($"Message handler encountered an exception {exceptionReceivedEventArgs.Exception}.");
             var context = exceptionReceivedEventArgs.ExceptionReceivedContext;
