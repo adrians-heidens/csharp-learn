@@ -57,7 +57,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetLearn", "NugetLearn\Nu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TempFileLearn", "TempFileLearn\TempFileLearn.csproj", "{73302DF3-E9F0-4958-B8A7-2399BDEA1C60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLearn", "AsyncLearn\AsyncLearn.csproj", "{84F34F10-F31F-4774-80A1-5610EE9A7F5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncLearn", "AsyncLearn\AsyncLearn.csproj", "{84F34F10-F31F-4774-80A1-5610EE9A7F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceBusLearn", "AzureServiceBusLearn\AzureServiceBusLearn.csproj", "{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -290,6 +292,14 @@ Global
 		{84F34F10-F31F-4774-80A1-5610EE9A7F5D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{84F34F10-F31F-4774-80A1-5610EE9A7F5D}.Release|x86.ActiveCfg = Release|Any CPU
 		{84F34F10-F31F-4774-80A1-5610EE9A7F5D}.Release|x86.Build.0 = Release|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Debug|x86.Build.0 = Debug|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF91A8F9-AA01-4D92-9B3B-E9B09AEF4E79}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
