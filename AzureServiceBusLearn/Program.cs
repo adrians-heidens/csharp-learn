@@ -10,6 +10,7 @@ namespace AzureServiceBusLearn
             //ReceiveMessages.Run();
             //SendToTopic.Run();
             //ReceiveFromSubscription.Run();
+            ReceiveFromSubSync.Run();
         }
     }
 }
