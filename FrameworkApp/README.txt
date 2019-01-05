@@ -1,0 +1,1 @@
+﻿An example .NET Framework application project.
