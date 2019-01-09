@@ -10,7 +10,7 @@ namespace AzureFunctionsLearn
     public static class OutputToServiceBus
     {
         [FunctionName("OutputToServiceBus")]
-        [return: ServiceBus("test", Connection = "ServiceBusConnection")]
+        [return: ServiceBus("%My.ServiceBusTopic%", Connection = "My.ServiceBusConnection")]
         public static string Run([HttpTrigger("get")]HttpRequestMessage req, TraceWriter log)
         {
             log.Info("OutputToServiceBus");
