@@ -3,6 +3,7 @@
   "Values": {
     "SYSLOG_SERVER_HOST": "syslog.test",
     "SYSLOG_TAG": "localazure",
+    "ServiceBusConnection": "a-connection-sring",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "AzureWebJobsDashboard": "UseDevelopmentStorage=true"
   }
