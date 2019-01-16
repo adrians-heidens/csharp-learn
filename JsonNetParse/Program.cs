@@ -16,7 +16,8 @@ namespace JsonNetParse
             //CommandDispatchExample.Run();
             //CustomTypeHandling.Run();
             //SelfReferenceTest.Run();
-            JObjectDataTypes.Run();
+            //JObjectDataTypes.Run();
+            DateTimeExample.Run();
             Console.WriteLine("End...");
             Console.ReadKey();
         }
