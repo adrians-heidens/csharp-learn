@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace SocketsLearn
 {
@@ -38,6 +39,11 @@ namespace SocketsLearn
             socket.Connect(endPoint);
 
             var textSend = "Hello!";
+            Console.WriteLine($"Sending UDP data. Message to send: '{textSend}'");
+            socket.Send(Encoding.ASCII.GetBytes(textSend));
+
+            // Send another packet if the first gets lost.
+            Thread.Sleep(1000);
             Console.WriteLine($"Sending UDP data. Message to send: '{textSend}'");
             socket.Send(Encoding.ASCII.GetBytes(textSend));
 
