@@ -14,6 +14,14 @@ namespace JsonNetParse
 
             jsonString = JsonConvert.SerializeObject(person);
             Console.WriteLine(jsonString);
+
+            // Use custom contract resolver which resets properties to their
+            // real names.
+            var settings = new JsonSerializerSettings {
+                ContractResolver = new MyContractResolver(),
+            };
+            jsonString = JsonConvert.SerializeObject(person, settings);
+            Console.WriteLine(jsonString);
         }
     }
 }
