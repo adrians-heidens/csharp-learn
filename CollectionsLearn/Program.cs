@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CollectionsLearn
 {
@@ -25,6 +26,13 @@ namespace CollectionsLearn
             List<string> list = new List<string> { "foo", "bar", "spam" }; // Collection initializer.
             value = list.Find(x => x == "Foo"); // Find value or null.
             Console.WriteLine(value == null);
+
+            // Print list.
+            Console.WriteLine(string.Join(',', list));
+
+            // Print dict.
+            var s = string.Join(';', dict.Select(x => $"{x.Key}='{x.Value}'"));
+            Console.WriteLine(s);
 
             Console.WriteLine("Press any key...");
             Console.ReadKey();
