@@ -8,7 +8,7 @@ namespace JsonNetParse
         {
             //SimpleParsing.Run();
             //SerializerParsing.Run();
-            AttributeNaming.Run();
+            //AttributeNaming.Run();
             //MissingMembersTest.Run();
             //JObjectLearn.Run();
             //NestedObjectsTest.Run();
@@ -18,6 +18,8 @@ namespace JsonNetParse
             //SelfReferenceTest.Run();
             //JObjectDataTypes.Run();
             //DateTimeExample.Run();
+            KeyValuePairExample.Run();
+
             Console.WriteLine("End...");
             Console.ReadKey();
         }
