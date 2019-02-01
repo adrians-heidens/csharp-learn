@@ -1,0 +1,1 @@
+﻿Examples of data type parsing and conversion.
