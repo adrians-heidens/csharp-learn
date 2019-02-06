@@ -18,7 +18,9 @@ namespace JsonNetParse
             //SelfReferenceTest.Run();
             //JObjectDataTypes.Run();
             //DateTimeExample.Run();
-            KeyValuePairExample.Run();
+            //KeyValuePairExample.Run();
+
+            StrictConverters.StrictConverters.Run();
 
             Console.WriteLine("End...");
             Console.ReadKey();
