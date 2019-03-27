@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace XmlLearn
@@ -11,6 +13,10 @@ namespace XmlLearn
     {
         static void Main(string[] args)
         {
+            var xmlDoc = "<span>foo <b>bar</b> spam <b><i>eggs</i></b> <i>ex</i> ample.</span>";
+            HtmlToMarkdown(xmlDoc);
+            Console.WriteLine();
+
             // XElement
             // XAttribute
             // XDocument
@@ -62,6 +68,48 @@ namespace XmlLearn
 
             Console.WriteLine("Press key...");
             Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Example of converting simple html text to markdown.
+        /// </summary>
+        private static string HtmlToMarkdown(string html)
+        {
+            var element = XElement.Parse(html, LoadOptions.PreserveWhitespace);
+            Console.WriteLine(element);
+
+            StringBuilder sb = new StringBuilder();
+            AddElement(sb, element);
+
+            Console.WriteLine(sb.ToString());
+
+            return null;
+        }
+
+        private static void AddElement(StringBuilder builder, XElement element)
+        {
+            foreach (var e in element.Nodes())
+            {
+                if (e.NodeType == XmlNodeType.Text)
+                {
+                    builder.Append((XText)e);
+                    continue;
+                }
+
+                var elem = e as XElement;
+                if (elem.Name == "b")
+                {
+                    builder.Append("**");
+                    AddElement(builder, elem);
+                    builder.Append("**");
+                }
+                else if (elem.Name == "i")
+                {
+                    builder.Append("_");
+                    AddElement(builder, elem);
+                    builder.Append("_");
+                }
+            }
         }
     }
 }
