@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DnsBits</name>
+    </assembly>
+    <members>
+        <member name="M:DnsBits.BitUtils.GetBits(System.Byte,System.Int32,System.Int32)">
+            <summary>
+            Get specified bits out of byte value.
+            </summary>
+            <param name="value">Value to get bits from.</param>
+            <param name="index">From which bit to get (0 to 7).</param>
+            <param name="count">How many bits to get (0 to 8 - index).</param>
+            <returns>Specified bits as byte value.</returns>
+        </member>
+        <member name="M:DnsBits.BitUtils.SetBits(System.Byte,System.Int32,System.Int32,System.Byte)">
+            <summary>
+            Copy specified bits from one byte value to another.
+            </summary>
+            <param name="value">Byte value to copy to.</param>
+            <param name="index">From which bit to copy (0 to 7).</param>
+            <param name="count">How many bits to copy (0 to 8 - index).</param>
+            <param name="source">Byte value to copy bits from.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DnsBits.ByteReader">
+            <summary>
+            Read from byte array primitive data types using big-endian arrangement.
+            </summary>
+            <remarks>
+            Reading is not allowed accross byte boundaries. That means when it reads 5 bits from the
+            stream then it is invalid to try to read 1 byte or 6 bits in the next read. It could
+            be 3 bits, 1 bit followed by 2 bits or three times of 1 bit.
+            </remarks>
+        </member>
+        <member name="P:DnsBits.ByteReader.IsFinished">
+            <summary>
+            Byte stream has been consumed.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteReader.GetUshort">
+            <summary>
+            Get ushort value.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteReader.GetUint">
+            <summary>
+            Get uint value.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteReader.GetByte">
+            <summary>
+            Get byte value.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteReader.GetString(System.Int32)">
+            <summary>
+            Get and decode string as UTF8.
+            </summary>
+            <param name="size">Number of bytes to get.</param>
+        </member>
+        <member name="M:DnsBits.ByteReader.GetBytes(System.Int32)">
+            <summary>
+            Get bytes.
+            </summary>
+            <param name="count">Number of bytes to get.</param>
+        </member>
+        <member name="M:DnsBits.ByteReader.GetBits(System.Int32)">
+            <summary>
+            Get individual bits.
+            </summary>
+            <param name="count">Number of bits to get.</param>
+        </member>
+        <member name="M:DnsBits.ByteReader.GetPosition">
+            <summary>
+            Get position of current byte to read.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteReader.SetPosition(System.Int64)">
+            <summary>
+            Set position on which byte to read.
+            </summary>
+        </member>
+        <member name="T:DnsBits.ByteWriter">
+            <summary>
+            Build byte array from primitive data types using big-endian arrangement.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteWriter.AddUshort(System.UInt16)">
+            <summary>
+            Add ushort value.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteWriter.AddUint(System.UInt32)">
+            <summary>
+            Add uint value.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteWriter.AddByte(System.Byte)">
+            <summary>
+            Add byte value.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteWriter.AddString(System.String)">
+            <summary>
+            Add string value encoded as UTF8.
+            </summary>
+        </member>
+        <member name="M:DnsBits.ByteWriter.AddBytes(System.Byte[])">
+            <summary>
+            Add byte array.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:DnsBits.ByteWriter.AddBits(System.Int32,System.Byte)">
+            <summary>
+            Add individual bits.
+            </summary>
+            <param name="count">Number of bits to add.</param>
+            <param name="value">Actual bits to add.</param>
+        </member>
+        <member name="M:DnsBits.ByteWriter.GetValue">
+            <summary>
+            Get built bit array.
+            </summary>
+        </member>
+        <member name="T:DnsBits.DnsBitsException">
+            <summary>
+            Base exceptions for BnsBits project.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsClient.GetIpv4Address(System.String)">
+            <summary>
+            Resolve and return IPv4 address from hostname.
+            </summary>
+            <param name="hostName">Hostname to resolve</param>
+            <returns>Ipv4 address</returns>
+        </member>
+        <member name="T:DnsBits.DnsHeader">
+            <summary>
+            Dns message header (direct representation).
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.ID">
+            <summary>
+            A 16 bit identifier used by the requester to match up replies.
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.QR">
+            <summary>
+            Specifies whether this message is a query(0), or a response(1).
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.OPCODE">
+            <summary>
+            A four bit field that specifies kind of query in this message.
+            </summary>
+            <remarks>
+            0 -- a standard query (QUERY)
+            1 -- an inverse query (IQUERY)
+            2 -- a server status request (STATUS)
+            3-15 -- reserved for future use
+            </remarks>
+        </member>
+        <member name="P:DnsBits.DnsHeader.AA">
+            <summary>
+            Authoritative Answer.
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.TC">
+            <summary>
+            TrunCation -- specifies that this message was truncated.
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.RD">
+            <summary>
+            Recursion desired (it directs the name server to pursue the query
+            recursively).
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.RA">
+            <summary>
+            Recursion Available (set or cleared in a response, and denotes
+            whether recursive query support is available in the name server).
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.Z">
+            <summary>
+            Reserved for future use.
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.RCODE">
+            <summary>
+            Response code.
+            </summary>
+            <remarks>
+            0 -- No error condition.
+            1 -- Format error - The server was unable to interpret the query.
+            2 -- Server failure.
+            3 -- Name Error (in auth response name does not exist).
+            4 -- Not Implemented (type of query not implemented).
+            5 -- Refused.
+            6-15 -- Reserved for future use.
+            </remarks>
+        </member>
+        <member name="P:DnsBits.DnsHeader.QDCOUNT">
+            <summary>
+            Number of entries in the question section.
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.ANCOUNT">
+            <summary>
+            Number of resource records in the answer section.
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.NSCOUNT">
+            <summary>
+            Number of records in authority section.
+            </summary>
+        </member>
+        <member name="P:DnsBits.DnsHeader.ARCOUNT">
+            <summary>
+            Number of resource records in the additional records section.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsHeader.ToBytes">
+            <summary>
+            Get byte representation of the header.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsHeader.FromBytes(System.Byte[])">
+            <summary>
+            Create new header from byte array.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsHeader.FromByteReader(DnsBits.ByteReader)">
+            <summary>
+            Create new header from byte reader.
+            </summary>
+        </member>
+        <member name="T:DnsBits.DnsQuestion">
+            <summary>
+            Dns question.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsQuestion.ToBytes">
+            <summary>
+            Get byte representation of the question.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsQuestion.FromBytes(System.Byte[])">
+            <summary>
+            Create new header from byte array.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsQuestion.FromByteReader(DnsBits.ByteReader)">
+            <summary>
+            Create new header from ByteReader.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.CreateQuestionAsBytes(System.String,System.String)">
+            <summary>
+            Create DNS question message for A IN records (as bytes).
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.ReadName(DnsBits.ByteReader)">
+            <summary>
+            Read domain name from ByteReader.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.ReadDnsMessage(System.Byte[])">
+            <summary>
+            Parse byte array as a DNS message.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.AddIpv4(System.String,DnsBits.ByteWriter)">
+            <summary>
+            Add ipv4 value to byte writer.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.AddIpv6(System.String,DnsBits.ByteWriter)">
+            <summary>
+            Add ipv6 value to byte writer.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.GetNameBytes(System.String)">
+            <summary>
+            Get bytes for domain name.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.DnsMessageToBytes(DnsBits.DnsMessage)">
+            <summary>
+            Conver DNS message to byte array ready for transporting.
+            </summary>
+        </member>
+        <member name="M:DnsBits.DnsUtils.ReadAndPrintDnsMessage(System.Byte[])">
+            <summary>
+            Read bytes as DNS answer message and print it.
+            </summary>
+        </member>
+        <member name="T:DnsBits.Records.IRecord">
+            <summary>
+            Marker interface for DNS resource record types.
+            </summary>
+        </member>
+        <member name="T:DnsBits.Records.Record">
+            <summary>
+            Unknown (generic) DNS resource record.
+            </summary>
+        </member>
+        <member name="P:DnsBits.Records.Record.Name">
+            <summary>
+            Domain name.
+            </summary>
+        </member>
+        <member name="P:DnsBits.Records.Record.RType">
+            <summary>
+            Resource record type.
+            </summary>
+        </member>
+        <member name="P:DnsBits.Records.Record.RClass">
+            <summary>
+            Resource record class.
+            </summary>
+        </member>
+        <member name="P:DnsBits.Records.Record.Ttl">
+            <summary>
+            Time to live for this record in seconds (for caching).
+            </summary>
+            <remarks>
+            0 value means no caching at all.
+            </remarks>
+        </member>
+        <member name="P:DnsBits.Records.Record.RDLength">
+            <summary>
+            Length of the RDATA field.
+            </summary>
+        </member>
+        <member name="P:DnsBits.Records.Record.RData">
+            <summary>
+            Content of the resource record.
+            </summary>
+            <remarks>
+            Should consider limiting the length.
+            </remarks>
+        </member>
+        <member name="M:DnsBits.Validator.IsValidIpv6(System.String)">
+            <summary>
+            Check if valid IPv6. Expect full format.
+            </summary>
+        </member>
+        <member name="M:DnsBits.Validator.NormalizeIPv6(System.String)">
+            <summary>
+            Remove unnecessary zeros, make uppercase.
+            </summary>
+        </member>
+        <member name="M:DnsBits.Validator.IsValidIpv4(System.String)">
+            <summary>
+            Is the string a valid IPv4 address.
+            </summary>
+        </member>
+        <member name="M:DnsBits.Validator.NormalizeIpv4(System.String)">
+            <summary>
+            Remove leading zeros from numbers if any.
+            </summary>
+        </member>
+        <member name="M:DnsBits.Validator.IsValidName(System.String)">
+            <summary>
+            Is the string a valid domain name.
+            </summary>
+        </member>
+    </members>
+</doc>
