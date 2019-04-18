@@ -20,7 +20,9 @@ namespace JsonNetParse
             //DateTimeExample.Run();
             //KeyValuePairExample.Run();
 
-            StrictConverters.StrictConverters.Run();
+            //StrictConverters.StrictConverters.Run();
+
+            ErrorHandlingExample.Run();
 
             Console.WriteLine("End...");
             Console.ReadKey();
