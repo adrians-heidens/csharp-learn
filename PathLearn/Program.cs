@@ -13,6 +13,7 @@ namespace PathLearn
             Console.WriteLine($"Path: '{ path }'");
             Console.WriteLine($"Extension: '{ Path.GetExtension(path) }'");
             Console.WriteLine($"Filename: '{ Path.GetFileName(path) }'");
+            Console.WriteLine($"Filename without ext: '{ Path.GetFileNameWithoutExtension(path) }'");
             Console.WriteLine($"DirectoryName: '{ Path.GetDirectoryName(path) }'");
 
             var mimetypeMapping = new Dictionary<string, string>()
