@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,26 @@ namespace CollectionsLearn
             // Print dict.
             var s = string.Join(';', dict.Select(x => $"{x.Key}='{x.Value}'"));
             Console.WriteLine(s);
+            
+            Console.WriteLine("----");
+
+            // Initialize a dict.
+            dict = new Dictionary<string, string> {
+                { "foo", "bar" },
+                { "spam", "eggs" },
+            };
+
+            // Custom dict-like type with collection init, indexer.
+            var customDict = new CustomDictionary {
+                { "foo", "bar" },
+                { "spam", "eggs" },
+            };
+            customDict["fizz"] = "buzz";
+            Console.WriteLine(customDict);
+            foreach (var c in customDict)
+            {
+                Console.WriteLine(c);
+            }
 
             Console.WriteLine("Press any key...");
             Console.ReadKey();
