@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JsonNetParse.EnumHandling;
+using System;
 
 namespace JsonNetParse
 {
@@ -19,10 +20,10 @@ namespace JsonNetParse
             //JObjectDataTypes.Run();
             //DateTimeExample.Run();
             //KeyValuePairExample.Run();
-
             //StrictConverters.StrictConverters.Run();
+            //ErrorHandlingExample.Run();
 
-            ErrorHandlingExample.Run();
+            EnumHandlingExample.Run();
 
             Console.WriteLine("End...");
             Console.ReadKey();

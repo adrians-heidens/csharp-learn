@@ -1,0 +1,1 @@
+﻿Example of Enum value serialization/deserialization using JsonConvert.
