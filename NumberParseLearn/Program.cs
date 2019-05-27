@@ -24,6 +24,16 @@ namespace NumberParseLearn
             // To uppercase hex string.
             Console.WriteLine(val.ToString("x4"));
 
+            Console.WriteLine("----");
+
+            // Trying to convert different things to number.
+            Console.WriteLine(Convert.ToInt32("0012")); // 12
+            // Console.WriteLine(Convert.ToInt32("0x12")); // System.FormatException
+            // Console.WriteLine(Convert.ToInt32("12.34")); // System.FormatException
+            // Console.WriteLine(Convert.ToInt32("")); // System.FormatException
+            Console.WriteLine(Convert.ToInt32(" 16")); // 16
+            Console.WriteLine(Convert.ToInt32(56.7)); // 57
+            
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
