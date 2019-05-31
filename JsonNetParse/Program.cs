@@ -1,9 +1,9 @@
-﻿using JsonNetParse.EnumHandling;
-using System;
+﻿using System;
+using JsonNetParse.ObjectPropertySetter;
 
 namespace JsonNetParse
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
@@ -22,8 +22,8 @@ namespace JsonNetParse
             //KeyValuePairExample.Run();
             //StrictConverters.StrictConverters.Run();
             //ErrorHandlingExample.Run();
-
-            EnumHandlingExample.Run();
+            //EnumHandlingExample.Run();
+            ObjectPropertySetterExample.Run();
 
             Console.WriteLine("End...");
             Console.ReadKey();
