@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Log4NetLearn.Syslog;
+using System;
 
 namespace Log4NetLearn
 {
@@ -8,7 +9,8 @@ namespace Log4NetLearn
         {
             //BasicConfigExample.Run();
             //ProgrammaticConfig.Run();
-            RemoteSyslogExample.Run();
+            //RemoteSyslogExample.Run();
+            SyslogTcpExample.Run();
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
