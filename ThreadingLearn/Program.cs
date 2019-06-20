@@ -1,4 +1,5 @@
 ﻿using System;
+using ThreadingLearn.Queue;
 
 namespace ThreadingLearn
 {
@@ -6,8 +7,9 @@ namespace ThreadingLearn
     {
         static void Main(string[] args)
         {
-            ThreadLearn.Run();
+            //ThreadLearn.Run();
             //BlockingCollectionLearn.Run();
+            QueueExample.Run();
 
             Console.WriteLine("Press key...");
             Console.ReadKey();
