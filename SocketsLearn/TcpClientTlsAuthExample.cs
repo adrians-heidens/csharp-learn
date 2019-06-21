@@ -35,7 +35,7 @@ namespace SocketsLearn
              * openssl pkcs12 -export -out cert.p12 -in cert.pem -inkey key.pem
              */
             X509CertificateCollection certificates = new X509CertificateCollection();
-            certificates.Add(new X509Certificate(@"C:\keys\cert.p12", "12345678"));
+            certificates.Add(new X509Certificate(@"C:\keys\client.p12", "12345678"));
             
             sslStream.AuthenticateAsClient(
                 targetHost: "",
