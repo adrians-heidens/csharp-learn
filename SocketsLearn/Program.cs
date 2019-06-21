@@ -9,7 +9,7 @@ namespace SocketsLearn
             //UdpSendReceive.Run();
             //TcpSendReceive.Run();
             //TcpClientSendExample.Run();
-            TcpClientSendTlsExample.Run();
+            TcpClientTlsAuthExample.Run();
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
