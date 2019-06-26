@@ -280,6 +280,20 @@ namespace Log4NetLearn.Syslog
             }
         }
 
+        private void Ping()
+        {
+            while (true)
+            {
+                Thread.Sleep(60 * 1000);
+
+                Append(new LoggingEvent(new LoggingEventData {
+                    Level = Level.Debug,
+                    Message = "-- PING --",
+                    LoggerName = "syslog",
+                }));
+            }
+        }
+
         public override void ActivateOptions()
         {
             base.ActivateOptions();
@@ -288,6 +302,10 @@ namespace Log4NetLearn.Syslog
             Thread t1 = new Thread(new ThreadStart(ConsumeQueue));
             t1.IsBackground = true;
             t1.Start();
+
+            Thread t2 = new Thread(new ThreadStart(Ping));
+            t2.IsBackground = true;
+            t2.Start();
         }
         
         virtual protected SyslogSeverity GetSeverity(Level level)

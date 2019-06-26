@@ -2,10 +2,7 @@
 using log4net.Appender;
 using log4net.Layout;
 using log4net.Repository;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Log4NetLearn.Syslog
 {
@@ -34,22 +31,16 @@ namespace Log4NetLearn.Syslog
             identity.ConversionPattern = "log4net";
             identity.ActivateOptions();
 
-            SyslogTcpAppender remoteSyslogAppender = new SyslogTcpAppender();
+            var remoteSyslogAppender = new SyslogTcpTlsQueueAppender();
             remoteSyslogAppender.Layout = noTimeLayout;
-            remoteSyslogAppender.Facility = SyslogTcpAppender.SyslogFacility.User;
+            remoteSyslogAppender.Facility = SyslogTcpTlsQueueAppender.SyslogFacility.User;
             remoteSyslogAppender.Identity = identity;
-            remoteSyslogAppender.Hostname = "f00.lv";
-            remoteSyslogAppender.Port = 515;
+            remoteSyslogAppender.Hostname = "192.168.56.11";
+            remoteSyslogAppender.Port = 6514;
+            remoteSyslogAppender.CertificatePath = @"c:\keys\client.p12";
+            remoteSyslogAppender.CertificatePassword = "123456";
             remoteSyslogAppender.ActivateOptions();
-
-            //RemoteSyslogAppender remoteSyslogAppender = new RemoteSyslogAppender();
-            //remoteSyslogAppender.Layout = noTimeLayout;
-            //remoteSyslogAppender.RemoteAddress = GetIpv4Address("f00.lv");
-            //remoteSyslogAppender.RemotePort = 514;
-            //remoteSyslogAppender.Facility = RemoteSyslogAppender.SyslogFacility.User;
-            //remoteSyslogAppender.Identity = identity;
-            //remoteSyslogAppender.ActivateOptions();
-
+            
             IBasicRepositoryConfigurator configurableRepository = repository as IBasicRepositoryConfigurator;
             configurableRepository.Configure(consoleAppender, remoteSyslogAppender);
         }
