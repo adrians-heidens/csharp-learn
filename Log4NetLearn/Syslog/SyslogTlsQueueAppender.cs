@@ -3,16 +3,26 @@ using log4net.Core;
 using log4net.Layout;
 using log4net.Util;
 using System;
-using System.IO;
 using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 
 namespace Log4NetLearn.Syslog
 {
-    public class SyslogTcpTlsQueueAppender : AppenderSkeleton
+
+
+    /// <summary>
+    /// Appender for log4net to send logs to remote syslog server via TCP
+    /// protocolo using TLS transport.
+    /// </summary>
+    /// <remarks>
+    /// This class is taken from log4net built-in RemoteSyslogAppender and
+    /// modified to work with TCP, TLS.
+    /// </remarks>
+    public class SyslogTlsQueueAppender : AppenderSkeleton
     {
         public enum SyslogSeverity
         {
@@ -25,7 +35,7 @@ namespace Log4NetLearn.Syslog
             Informational = 6,
             Debug = 7
         };
-        
+
         public enum SyslogFacility
         {
             Kernel = 0,
@@ -56,43 +66,83 @@ namespace Log4NetLearn.Syslog
 
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
+        /// <summary>
+        /// Syslog server hostname.
+        /// </summary>
         public string Hostname { get; set; } = "localhost";
 
+        /// <summary>
+        /// Syslog server port.
+        /// </summary>
         public int Port { get; set; } = 6514;
 
+        /// <summary>
+        /// Path to PKCS12 certificate file.
+        /// </summary>
         public string CertificatePath { get; set; }
 
+        /// <summary>
+        /// Binary data of PKCS12 certificate.
+        /// </summary>
         public byte[] CertificateData { get; set; }
 
+        /// <summary>
+        /// Certificate encoded as base64 string.
+        /// </summary>
+        public string CertificateBase64 { get; set; }
+
+        /// <summary>
+        /// Certificate password.
+        /// </summary>
         public string CertificatePassword { get; set; }
+
+        /// <summary>
+        /// Enable PING message sending.
+        /// </summary>
+        public bool PingEnabled { get; set; } = false;
+
+        /// <summary>
+        /// Miliseconds between PING messages.
+        /// </summary>
+        public int PingTime { get; set; } = 60 * 1000;
+
+        /// <summary>
+        /// Enable TCP keepalive feature.
+        /// </summary>
+        public bool TcpKeepAliveEnabled { get; set; } = false;
+
+        /// <summary>
+        /// TCP keepalive time value (and interval) in miliseconds.
+        /// </summary>
+        public int TcpKeepAliveTime { get; set; } = 60 * 1000;
+
+        private X509Certificate2Collection certificates = new X509Certificate2Collection();
 
         private TcpClient tcpClient;
 
         private SslStream sslStream;
 
-        public RotatingQueue<byte[]> Queue { get; } = new RotatingQueue<byte[]>();
+        private DiscardingQueue<byte[]> Queue { get; } = new DiscardingQueue<byte[]>();
 
-        public SyslogTcpTlsQueueAppender()
-        {
-        }
-        
+        public SyslogTlsQueueAppender() { }
+
         public PatternLayout Identity
         {
             get { return m_identity; }
             set { m_identity = value; }
         }
-        
+
         public SyslogFacility Facility
         {
             get { return m_facility; }
             set { m_facility = value; }
         }
-        
+
         public void AddMapping(LevelSeverity mapping)
         {
             m_levelMapping.Add(mapping);
         }
-        
+
         protected override void Append(LoggingEvent loggingEvent)
         {
             try
@@ -186,17 +236,26 @@ namespace Log4NetLearn.Syslog
 
         private void Connect()
         {
-            tcpClient = new TcpClient();
-            
+            // TODO: Timeout values.
+            tcpClient = new TcpClient { ReceiveTimeout = 1000, SendTimeout = 1000 };
+
             try
             {
                 tcpClient.Connect(Hostname, Port);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 tcpClient.Close();
                 tcpClient = null;
+
+                AppendDebugMessage(e.Message);
                 return;
+            }
+
+            if (TcpKeepAliveEnabled)
+            {
+                AppendDebugMessage($"Set TCP keepalive to {TcpKeepAliveTime}");
+                SetTcpKeepAlive(tcpClient.Client, TcpKeepAliveTime);
             }
 
             sslStream = new SslStream(
@@ -205,29 +264,18 @@ namespace Log4NetLearn.Syslog
                 new RemoteCertificateValidationCallback(ValidateServerCertificate)
                 );
 
-            X509CertificateCollection certificates = new X509CertificateCollection();
-            if (CertificateData != null)
-            {
-                certificates.Add(new X509Certificate(CertificateData, CertificatePassword));
-            }
-            else
-            {
-                certificates.Add(new X509Certificate(CertificatePath, CertificatePassword));
-            }
-
             try
             {
                 sslStream.AuthenticateAsClient(
                     targetHost: Hostname,
                     clientCertificates: certificates,
+                    enabledSslProtocols: SslProtocols.Tls11 | SslProtocols.Tls12,
                     checkCertificateRevocation: false);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                sslStream.Close();
-                tcpClient.Close();
-                sslStream = null;
-                tcpClient = null;
+                CloseConnection();
+                AppendDebugMessage(e.Message);
             }
         }
 
@@ -235,13 +283,14 @@ namespace Log4NetLearn.Syslog
         {
             if (tcpClient == null)
             {
-                Reconnect();
+                ReconnectUntilSucceed();
             }
         }
 
-        private void Reconnect()
+        private void ReconnectUntilSucceed()
         {
-            int waitTime = 10;
+            int maxDelay = 4096; // miliseconds.
+            int delay = 16; // miliseconds.
             while (true)
             {
                 Connect();
@@ -249,8 +298,35 @@ namespace Log4NetLearn.Syslog
                 {
                     return;
                 }
-                Thread.Sleep(Math.Min(waitTime, 1000));
-                waitTime *= 2;
+                Thread.Sleep(delay);
+                delay = Math.Min(delay * 2, maxDelay);
+            }
+        }
+
+        private void CloseConnection()
+        {
+            sslStream.Close();
+            tcpClient.Close();
+            tcpClient = null;
+            sslStream = null;
+        }
+
+        private void WriteUntilSucceed(byte[] buffer)
+        {
+            while (true)
+            {
+                try
+                {
+                    sslStream.Write(buffer);
+                    sslStream.Flush();
+                    return;
+                }
+                catch (Exception e)
+                {
+                    CloseConnection();
+                    AppendDebugMessage(e.Message);
+                    ReconnectUntilSucceed();
+                }
             }
         }
 
@@ -258,39 +334,72 @@ namespace Log4NetLearn.Syslog
         private void ConsumeQueue()
         {
             ReconnectIfNeeded();
-            
+
             while (true)
             {
                 var buffer = Queue.Get(); // Wait for item.
-
-                try
-                {
-                    sslStream.Write(buffer);
-                }
-                catch (IOException)  // Sending error, close connection.
-                {
-                    sslStream.Close();
-                    tcpClient.Close();
-
-                    tcpClient = null;
-                    sslStream = null;
-                }
-
-                ReconnectIfNeeded();  // Reconnect if closed.
+                WriteUntilSucceed(buffer);
             }
+        }
+
+        private void AppendDebugMessage(string message)
+        {
+            Append(new LoggingEvent(new LoggingEventData
+            {
+                Level = Level.Debug,
+                Message = message,
+                LoggerName = "log4net",
+            }));
         }
 
         private void Ping()
         {
             while (true)
             {
-                Thread.Sleep(60 * 1000);
-
-                Append(new LoggingEvent(new LoggingEventData {
+                Thread.Sleep(PingTime);
+                Append(new LoggingEvent(new LoggingEventData
+                {
                     Level = Level.Debug,
                     Message = "-- PING --",
-                    LoggerName = "syslog",
+                    LoggerName = "log4net",
                 }));
+            }
+        }
+
+        private void SetTcpKeepAlive(Socket socket, int tcpKeepAliveTime)
+        {
+            /* Enable TCP keep-alive. */
+            socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+
+            byte[] optionInValue = new byte[sizeof(uint) * 3];
+
+            /* Keep-alive is enabled or disabled. */
+            BitConverter.GetBytes(1).CopyTo(optionInValue, 0);
+
+            /* The timeout, in milliseconds, with no activity until the first keep-alive packet is sent. */
+            BitConverter.GetBytes(tcpKeepAliveTime).CopyTo(optionInValue, sizeof(uint));
+
+            /* The interval, in milliseconds, between when successive keep-alive packets are sent if no acknowledgement is received. */
+            BitConverter.GetBytes(tcpKeepAliveTime).CopyTo(optionInValue, sizeof(uint) * 2);
+
+            /* Set TCP keep-alive values. */
+            socket.IOControl(IOControlCode.KeepAliveValues, optionInValue, null);
+        }
+
+        private void LoadCertificates()
+        {
+            if (CertificateData == null && CertificateBase64 != null)
+            {
+                CertificateData = Convert.FromBase64String(CertificateBase64);
+            }
+
+            if (CertificateData != null)
+            {
+                certificates.Add(new X509Certificate2(CertificateData, CertificatePassword));
+            }
+            else
+            {
+                certificates.Add(new X509Certificate2(CertificatePath, CertificatePassword));
             }
         }
 
@@ -299,15 +408,20 @@ namespace Log4NetLearn.Syslog
             base.ActivateOptions();
             m_levelMapping.ActivateOptions();
 
-            Thread t1 = new Thread(new ThreadStart(ConsumeQueue));
-            t1.IsBackground = true;
-            t1.Start();
+            LoadCertificates();
 
-            Thread t2 = new Thread(new ThreadStart(Ping));
-            t2.IsBackground = true;
-            t2.Start();
+            Thread messageConsumerThread = new Thread(new ThreadStart(ConsumeQueue));
+            messageConsumerThread.IsBackground = true;
+            messageConsumerThread.Start();
+
+            if (PingEnabled)
+            {
+                Thread pingThread = new Thread(new ThreadStart(Ping));
+                pingThread.IsBackground = true;
+                pingThread.Start();
+            }
         }
-        
+
         virtual protected SyslogSeverity GetSeverity(Level level)
         {
             LevelSeverity levelSeverity = m_levelMapping.Lookup(level) as LevelSeverity;
@@ -347,7 +461,7 @@ namespace Log4NetLearn.Syslog
             // Default setting
             return SyslogSeverity.Debug;
         }
-        
+
         public static int GeneratePriority(SyslogFacility facility, SyslogSeverity severity)
         {
             if (facility < SyslogFacility.Kernel || facility > SyslogFacility.Local7)
@@ -365,17 +479,17 @@ namespace Log4NetLearn.Syslog
                 return ((int)facility * 8) + (int)severity;
             }
         }
-        
+
         private SyslogFacility m_facility = SyslogFacility.User;
-        
+
         private PatternLayout m_identity;
 
         private LevelMapping m_levelMapping = new LevelMapping();
-        
+
         public class LevelSeverity : LevelMappingEntry
         {
             private SyslogSeverity m_severity;
-            
+
             public SyslogSeverity Severity
             {
                 get { return m_severity; }

@@ -3,6 +3,7 @@ using log4net.Appender;
 using log4net.Layout;
 using log4net.Repository;
 using System.Reflection;
+using System.Threading;
 
 namespace Log4NetLearn.Syslog
 {
@@ -31,9 +32,9 @@ namespace Log4NetLearn.Syslog
             identity.ConversionPattern = "log4net";
             identity.ActivateOptions();
 
-            var remoteSyslogAppender = new SyslogTcpTlsQueueAppender();
+            var remoteSyslogAppender = new SyslogTlsQueueAppender();
             remoteSyslogAppender.Layout = noTimeLayout;
-            remoteSyslogAppender.Facility = SyslogTcpTlsQueueAppender.SyslogFacility.User;
+            remoteSyslogAppender.Facility = SyslogTlsQueueAppender.SyslogFacility.User;
             remoteSyslogAppender.Identity = identity;
             remoteSyslogAppender.Hostname = "192.168.56.11";
             remoteSyslogAppender.Port = 6514;
@@ -48,6 +49,12 @@ namespace Log4NetLearn.Syslog
         public static void Run()
         {
             ConfigureLogger();
+
+            for (int i = 0; i < 100; i++)
+            {
+                log.Info($"Message: {i}");
+                Thread.Sleep(1000);
+            }
 
             log.Fatal("Logging log4net test (level: Fatal)");
             log.Error("Logging log4net test (level: Error)");

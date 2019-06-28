@@ -4,7 +4,11 @@ using System.Threading;
 
 namespace Log4NetLearn.Syslog
 {
-    public class RotatingQueue<T>
+    /// <summary>
+    /// Limited size synchronized queue which discards oldest elements when no
+    /// space left.
+    /// </summary>
+    class DiscardingQueue<T>
     {
         private List<T> list = new List<T>();
 
@@ -12,7 +16,7 @@ namespace Log4NetLearn.Syslog
 
         private object lockObj = new object();
 
-        public RotatingQueue(int maxSize = 1000)
+        public DiscardingQueue(int maxSize = 1000)
         {
             if (maxSize <= 0)
             {

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<log4net>
+  <!-- Define some output appenders -->
+  <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender" >
+    <layout type="log4net.Layout.PatternLayout">
+      <param name="ConversionPattern" value="[SimpleAppConfig] %date [%thread] %-5level %logger - %message%newline" />
+    </layout>
+  </appender>
+  
+  <appender name="Syslog" type="Log4NetLearn.Syslog.SyslogTcpTlsQueueAppender, Log4NetLearn">
+    <hostname value="192.168.56.11" />
+    <port value="6514" />
+    <!--<certificatePath value="c:\keys\client.p12" />-->
+    <certificateBase64>
+      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
+    </certificateBase64>
+    <certificatePassword value="123456" />
+    <layout type="log4net.Layout.PatternLayout">
+      <param name="ConversionPattern" value="[SimpleAppConfig] %date [%thread] %-5level %logger - %message%newline" />
+    </layout>
+    <identity value="test" />
+  </appender>
+  
+  <!-- Setup the root category, add the appenders and set the default priority -->
+  <root>
+    <level value="DEBUG" />
+    <appender-ref ref="Syslog" />
+    <appender-ref ref="ConsoleAppender" />
+  </root>
+</log4net>
