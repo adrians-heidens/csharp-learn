@@ -16,6 +16,12 @@ namespace ReflectionLearn
 
             Console.WriteLine(assembly);
 
+            var assemblyName = assembly.GetName();
+            var assemblyVersion = assemblyName.Version;
+            Console.WriteLine(assemblyVersion);
+
+            Console.WriteLine("----");
+
             foreach (var type in assembly.DefinedTypes)
             {
                 Console.WriteLine($"  Type: {type}");
