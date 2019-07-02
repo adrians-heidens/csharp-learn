@@ -7,7 +7,7 @@
     </layout>
   </appender>
   
-  <appender name="Syslog" type="Log4NetLearn.Syslog.SyslogTcpTlsQueueAppender, Log4NetLearn">
+  <appender name="Syslog" type="Log4NetLearn.Syslog.SyslogTlsQueueAppender, Log4NetLearn">
     <hostname value="192.168.56.11" />
     <port value="6514" />
     <!--<certificatePath value="c:\keys\client.p12" />-->
