@@ -79,7 +79,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocCommentParseLearn", "Doc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureServiceBusApp", "AzureServiceBusApp\AzureServiceBusApp.csproj", "{D81B9EBE-0950-4A71-B310-C18FAE712FD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingLearn", "ThreadingLearn\ThreadingLearn.csproj", "{6139EE62-BF12-48B4-96F0-661A3AFE5838}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadingLearn", "ThreadingLearn\ThreadingLearn.csproj", "{6139EE62-BF12-48B4-96F0-661A3AFE5838}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
