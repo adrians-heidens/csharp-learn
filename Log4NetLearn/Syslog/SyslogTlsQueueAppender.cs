@@ -12,8 +12,6 @@ using System.Threading;
 
 namespace Log4NetLearn.Syslog
 {
-
-
     /// <summary>
     /// Appender for log4net to send logs to remote syslog server via TCP
     /// protocolo using TLS transport.
@@ -121,6 +119,10 @@ namespace Log4NetLearn.Syslog
         private TcpClient tcpClient;
 
         private SslStream sslStream;
+
+        private Thread messageConsumerThread;
+
+        private bool isClosing = false;
 
         private DiscardingQueue<byte[]> Queue { get; } = new DiscardingQueue<byte[]>();
 
@@ -254,7 +256,6 @@ namespace Log4NetLearn.Syslog
 
             if (TcpKeepAliveEnabled)
             {
-                AppendDebugMessage($"Set TCP keepalive to {TcpKeepAliveTime}");
                 SetTcpKeepAlive(tcpClient.Client, TcpKeepAliveTime);
             }
 
@@ -291,7 +292,7 @@ namespace Log4NetLearn.Syslog
         {
             int maxDelay = 4096; // miliseconds.
             int delay = 16; // miliseconds.
-            while (true)
+            while (!isClosing)
             {
                 Connect();
                 if (tcpClient != null)
@@ -318,7 +319,6 @@ namespace Log4NetLearn.Syslog
                 try
                 {
                     sslStream.Write(buffer);
-                    sslStream.Flush();
                     return;
                 }
                 catch (Exception e)
@@ -335,10 +335,26 @@ namespace Log4NetLearn.Syslog
         {
             ReconnectIfNeeded();
 
+            byte[] buffer;
             while (true)
             {
-                var buffer = Queue.Get(); // Wait for item.
-                WriteUntilSucceed(buffer);
+                buffer = Queue.Get(); // Wait for item.
+                if (isClosing)
+                {
+                    // An empty buffer (length 0) is sent to indicate shutdown.
+                    // Should not be any other item after that as Append is not valid
+                    // after closing appender. Send all items until the end.
+                    while (buffer.Length > 0)
+                    {
+                        WriteUntilSucceed(buffer);
+                        buffer = Queue.Get();
+                    }
+                    return;
+                }
+                else
+                {
+                    WriteUntilSucceed(buffer);
+                }
             }
         }
 
@@ -352,9 +368,17 @@ namespace Log4NetLearn.Syslog
             }));
         }
 
+        protected override void OnClose()
+        {
+            isClosing = true;
+            Queue.Add(new byte[] { }); // Awake consumer.
+            messageConsumerThread.Join();
+            CloseConnection();
+        }
+
         private void Ping()
         {
-            while (true)
+            while (!isClosing)
             {
                 Thread.Sleep(PingTime);
                 Append(new LoggingEvent(new LoggingEventData
@@ -410,7 +434,7 @@ namespace Log4NetLearn.Syslog
 
             LoadCertificates();
 
-            Thread messageConsumerThread = new Thread(new ThreadStart(ConsumeQueue));
+            messageConsumerThread = new Thread(new ThreadStart(ConsumeQueue));
             messageConsumerThread.IsBackground = true;
             messageConsumerThread.Start();
 
