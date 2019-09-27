@@ -23,9 +23,22 @@ namespace MicrosoftSqlLearn
             }
         }
 
+        private static void GetCount(string tableName, string connectionString)
+        {
+            var queryString = $"select count(1) from [{tableName}]";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                var x = command.ExecuteScalar() as int?;
+                Console.WriteLine(x);
+            }
+        }
+
         static void Main(string[] args)
         {
             CreateCommand("select Foo, Bar from Spam", "Server=.;Database=Test;Trusted_Connection=True;");
+            GetCount("Spam", "Server=.;Database=Test;Trusted_Connection=True;");
 
             Console.WriteLine("Press key...");
             Console.ReadKey();
