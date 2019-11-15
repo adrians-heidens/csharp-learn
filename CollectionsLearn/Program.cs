@@ -43,6 +43,13 @@ namespace CollectionsLearn
                 { "spam", "eggs" },
             };
 
+            // Copy a dict.
+            //var dictCopy = dict.ToDictionary(x => x.Key, x => x.Value);
+            var dictCopy = new Dictionary<string, string>(dict);
+            
+            // Remove element from dict.
+            dict.Remove("foo");
+            
             // Custom dict-like type with collection init, indexer.
             var customDict = new CustomDictionary {
                 { "foo", "bar" },
